@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import LoginScreen from './screens/Login';
 
 const screens = ["Screen 1", "Screen 2", "Screen 3"];
 
@@ -8,8 +9,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1 }} />
-      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', paddingVertical: 20 }}>
+      <View style={{ flex: 1 }}>
+        {currentScreen == 0 && <LoginScreen />}
+      </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', paddingVertical: 20, backgroundColor: 'black' }}>
         {screens.map((screen, i) => {
           const isSelected = (i == currentScreen);
           return (
@@ -21,7 +24,7 @@ export default function App() {
           );
         })}
       </View>
-    </View >
+    </View>
   );
 }
 
