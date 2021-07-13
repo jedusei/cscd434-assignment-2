@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LoginScreen from './screens/Login';
+import ProfileScreen from './screens/Profile';
 
 const screens = ["Screen 1", "Screen 2", "Screen 3"];
 
@@ -9,8 +10,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar />
       <View style={{ flex: 1 }}>
-        {currentScreen == 0 && <LoginScreen />}
+        {currentScreen == 0 ?
+          <LoginScreen />
+          : <ProfileScreen />
+        }
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', paddingVertical: 20, backgroundColor: 'black' }}>
         {screens.map((screen, i) => {
