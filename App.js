@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LoginScreen from './screens/Login';
 import ProfileScreen from './screens/Profile';
+import TransactionsScreen from './screens/Transactions';
 
 const screens = ["Screen 1", "Screen 2", "Screen 3"];
 
@@ -18,7 +19,7 @@ export default function App() {
     },
     {
       name: 'Screen 3',
-      component: null
+      component: TransactionsScreen
     }
   ];
 
