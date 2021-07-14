@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AntDesign, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import logo from '../assets/login_logo.png';
 
@@ -7,44 +7,45 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.logo}>
-                <Image source={logo} resizeMode="contain" style={{ width: 100 }} />
-            </View>
-            <View style={styles.fieldContainer}>
-                <Text style={styles.fieldLabel}>Email Address</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Feather name="mail" size={24} color="black" />
-                    <TextInput style={styles.inputField} value="Username@gmail.com" />
+        <ScrollView style={styles.container}>
+            <View style={{ padding: 30 }}>
+                <View style={styles.logo}>
+                    <Image source={logo} resizeMode="contain" style={{ width: 100 }} />
+                </View>
+                <View style={styles.fieldContainer}>
+                    <Text style={styles.fieldLabel}>Email Address</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Feather name="mail" size={24} color="black" />
+                        <TextInput style={styles.inputField} value="Username@gmail.com" />
+                    </View>
+                </View>
+                <View style={styles.fieldContainer}>
+                    <Text style={styles.fieldLabel}>Password</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <AntDesign name="lock" size={30} color="black" />
+                        <TextInput style={styles.inputField} value="password1234" secureTextEntry={!showPassword} />
+                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                            <MaterialCommunityIcons name={showPassword ? "eye-outline" : "eye-off-outline"} size={24} color="black" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <TouchableOpacity activeOpacity={0.75}>
+                    <View style={styles.loginBtn}>
+                        <Text style={styles.loginBtnTxt}>Login</Text>
+                    </View>
+                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 30 }}>
+                    <Text style={styles.footerText}>Signup</Text>
+                    <Text style={styles.footerText}>Forgot Password?</Text>
                 </View>
             </View>
-            <View style={styles.fieldContainer}>
-                <Text style={styles.fieldLabel}>Password</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <AntDesign name="lock" size={30} color="black" />
-                    <TextInput style={styles.inputField} value="password1234" secureTextEntry={!showPassword} />
-                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                        <MaterialCommunityIcons name={showPassword ? "eye-outline" : "eye-off-outline"} size={24} color="black" />
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <TouchableOpacity activeOpacity={0.75}>
-                <View style={styles.loginBtn}>
-                    <Text style={styles.loginBtnTxt}>Login</Text>
-                </View>
-            </TouchableOpacity>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 30 }}>
-                <Text style={styles.footerText}>Signup</Text>
-                <Text style={styles.footerText}>Forgot Password?</Text>
-            </View>
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingHorizontal: 30
+        flex: 1
     },
     logo: {
         backgroundColor: "#3d4886",
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        marginVertical: 100
+        marginTop: 70,
+        marginBottom: 100
     },
     fieldContainer: {
         borderRadius: 25,
