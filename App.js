@@ -6,24 +6,37 @@ import ProfileScreen from './screens/Profile';
 const screens = ["Screen 1", "Screen 2", "Screen 3"];
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState(0);
+  const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
+  const screens = [
+    {
+      name: 'Screen 1',
+      component: LoginScreen
+    },
+    {
+      name: 'Screen 2',
+      component: ProfileScreen
+    },
+    {
+      name: 'Screen 3',
+      component: null
+    }
+  ];
+
+  const CurrentScreen = screens[currentScreenIndex].component;
 
   return (
     <View style={styles.container}>
       <StatusBar />
       <View style={{ flex: 1 }}>
-        {currentScreen == 0 ?
-          <LoginScreen />
-          : <ProfileScreen />
-        }
+        {CurrentScreen && <CurrentScreen />}
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', paddingVertical: 20, backgroundColor: 'black' }}>
         {screens.map((screen, i) => {
-          const isSelected = (i == currentScreen);
+          const isSelected = (i == currentScreenIndex);
           return (
-            <TouchableOpacity key={screen} onPress={() => setCurrentScreen(i)}>
+            <TouchableOpacity key={screen.name} activeOpacity={0.75} onPress={() => setCurrentScreenIndex(i)}>
               <View style={Object.assign({}, styles.chip, isSelected && styles.selectedChip)}>
-                <Text style={isSelected ? styles.selectedChipText : styles.chipText}>{screen}</Text>
+                <Text style={isSelected ? styles.selectedChipText : styles.chipText}>{screen.name}</Text>
               </View>
             </TouchableOpacity>
           );
